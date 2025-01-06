@@ -2,6 +2,8 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>  // Add this line for sin() and cos()
+
 
 // Window size
 const int width = 800;
@@ -26,7 +28,7 @@ const int rows = 5;
 const int cols = 8;
 float blockWidth = 80;
 float blockHeight = 30;
-std::vector<std::vector<bool>> blocks(rows, std::vector<bool>(cols, true));
+std::vector<std::vector<bool> > blocks(rows, std::vector<bool>(cols, true));
 
 // Color Palette
 float colorPalette[3][3] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
