@@ -2,12 +2,11 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
-#include <cmath>  // Add this line for sin() and cos()
-
+#include <cmath>  // For sin() and cos()
 
 // Window size
-const int width = 800;
-const int height = 600;
+const int width = 640;
+const int height = 480;
 
 // Paddle properties
 float paddleWidth = 100;
@@ -87,6 +86,12 @@ void update(int value) {
     if (ballY + ballRadius > height) {
         ballSpeedY = -ballSpeedY;
     }
+    if (ballY - ballRadius < 0) {
+        // Reset ball if it falls below the screen
+        ballX = width / 2;
+        ballY = paddleY + paddleHeight + ballRadius;
+        ballSpeedY = 5;
+    }
 
     // Ball collision with paddle
     if (ballX > paddleX && ballX < paddleX + paddleWidth && ballY - ballRadius < paddleY + paddleHeight) {
@@ -102,6 +107,7 @@ void update(int value) {
                 if (ballX > blockX && ballX < blockX + blockWidth && ballY + ballRadius > blockY && ballY - ballRadius < blockY + blockHeight) {
                     ballSpeedY = -ballSpeedY;
                     blocks[i][j] = false;
+                    break; // Make the ball bounce back after hitting one block
                 }
             }
         }
